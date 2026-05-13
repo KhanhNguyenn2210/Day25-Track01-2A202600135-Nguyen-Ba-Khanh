@@ -1,46 +1,36 @@
----
-artifact: 1 — Demo giao diện
-format: phác thảo / ảnh / HTML / các màn hình chính
----
-
-# demo.md — Demo giao diện
-
-File này dùng để đặt phần trực quan của giải pháp.
-
-Nếu nhóm có ảnh, bản vẽ hoặc link prototype, đặt link vào đây. Nếu làm bằng Markdown, dùng khung bên dưới.
-
----
-
-## 1. Màn hình chính
+# Demo: Giao diện cảnh báo OCR (ASCII Sketch)
 
 ```text
-[Đặt phác thảo màn hình ở đây]
++-------------------------------------------------------------+
+|  [X] QUYẾT TOÁN THUẾ TNCN - KIỂM TRA DỮ LIỆU                |
++-------------------------------------------------------------+
+|                                                             |
+|  [!] Cảnh báo: AI nhận diện một số trường không rõ nét.     |
+|      Vui lòng kiểm tra lại với chứng từ gốc.                |
+|                                                             |
+|  +---------------------------+   +-----------------------+  |
+|  | Chứng từ gốc (Ảnh)        |   | Kết quả trích xuất    |  |
+|  |                           |   |                       |  |
+|  | [ Ảnh chụp chứng từ ]     |   | 1. Mã số thuế:        |  |
+|  | [ Vùng thu nhập:      ]   |   | [ 8034567890       ]  |  |
+|  | [ 88.000.000 VNĐ      ]   |   |                       |  |
+|  |                           |   | 2. Thu nhập chịu thuế:|  |
+|  |                           |   | [ 00.000.000       ] <--- [!] SAI (Bôi đỏ)
+|  |                           |   |   (Độ tự tin: 62%)    |  |
+|  |                           |   |                       |  |
+|  |                           |   | 3. Số thuế đã khấu trừ|  |
+|  |                           |   | [ 8.800.000        ]  |  |
+|  +---------------------------+   +-----------------------+  |
+|                                                             |
+|  [ Sửa lại dữ liệu ]   [ Tôi xác nhận dữ liệu đã đúng ]     |
+|                                                             |
++-------------------------------------------------------------+
+| [ ] Đồng ý với điều khoản bảo mật dữ liệu                   |
+|                                                             |
+|                   [ TIẾP TỤC (Vô hiệu hóa) ]                |
++-------------------------------------------------------------+
 ```
 
----
-
-## 2. Trạng thái cần minh họa
-
-| Trạng thái | Người dùng thấy gì? | Người dùng làm gì tiếp? |
-|---|---|---|
-| Có nguồn xác minh | | |
-| Chưa có nguồn xác minh | | |
-| AI không nên tự trả lời | | |
-| Cần chuyển sang người thật | | |
-
----
-
-## 3. Ghi chú cho từng thành phần
-
-- [Thành phần 1]: [vị trí, nội dung, hành vi]
-- [Thành phần 2]: [vị trí, nội dung, hành vi]
-- [Thành phần 3]: [vị trí, nội dung, hành vi]
-
----
-
-## 4. Kiểm tra nhanh
-
-- [ ] Nhìn vào demo là hiểu rủi ro đang được chặn ở đâu.
-- [ ] Có trạng thái khi AI không có đủ thông tin.
-- [ ] Có cách chuyển sang người thật.
-- [ ] Câu chữ đủ ngắn để đặt trên màn hình thật.
+### Giải thích Demo:
+- **Ô số 2**: AI đọc nhầm "88" thành "00". Hệ thống bôi đỏ và hiển thị độ tự tin thấp.
+- **Nút Tiếp tục**: Bị xám (disabled) cho đến khi người dùng tương tác với ô lỗi.

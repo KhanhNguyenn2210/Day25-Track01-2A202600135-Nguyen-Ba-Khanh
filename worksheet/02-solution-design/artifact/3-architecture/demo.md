@@ -1,58 +1,22 @@
----
-artifact: 3 — Demo kiến trúc dữ liệu
-format: sơ đồ xử lý + bảng thành phần
----
+# Demo: Sơ đồ kiến trúc Double OCR Pipeline
 
-# demo.md — Demo kiến trúc dữ liệu
-
-File này dùng để đặt sơ đồ và mô tả ngắn cách hệ thống giảm rủi ro.
-
----
-
-## 1. Sơ đồ cách hệ thống xử lý
-
-```text
-[Đặt sơ đồ ở đây]
-
-Ví dụ khung:
-
-Người dùng hỏi
-  -> Phân loại câu hỏi
-  -> Có phải câu hỏi rủi ro cao không?
-      -> Không: AI trả lời như bình thường
-      -> Có: Tra nguồn chính thức
-          -> Có dữ liệu: AI trả lời kèm nguồn
-          -> Không có dữ liệu: Chuyển sang người thật
-  -> Ghi lại để theo dõi lỗi
+```mermaid
+graph TD
+    User((Người dùng)) -->|Upload ảnh chứng từ| App[Giao diện Ứng dụng]
+    App -->|Gửi ảnh| Storage[(Bộ nhớ tạm)]
+    
+    Storage --> P1[Pipeline A: Gemini 1.5 Pro]
+    Storage --> P2[Pipeline B: Document AI / OCR Engine]
+    
+    P1 -->|JSON kết quả A| CM{Consensus Module}
+    P2 -->|JSON kết quả B| CM
+    
+    CM -->|Kết quả khớp| Success[Xuất dữ liệu sang Tờ khai]
+    CM -->|Kết quả lệch / Độ tin cậy thấp| Fail[Cảnh báo UI/UX & Highlight ô lỗi]
+    
+    Fail -->|Người dùng sửa tay| Success
 ```
 
----
-
-## 2. Thành phần chính
-
-| Thành phần | Nhận gì? | Làm gì? | Trả ra gì? |
-|---|---|---|---|
-| Phân loại câu hỏi | Câu hỏi của người dùng | Xác định có rủi ro cao không | Trả lời thường / cần kiểm tra nguồn |
-| Nguồn chính thức | Chủ đề cần kiểm tra | Tìm dữ liệu mới nhất | Thông tin + nguồn |
-| Bộ xử lý khi thiếu nguồn | Kết quả không có dữ liệu | Không cho AI đoán | Yêu cầu chuyển sang người thật |
-| Ghi lại lỗi | Câu hỏi + kết quả | Lưu lỗi để xem lại | Danh sách lỗi lặp lại |
-
----
-
-## 3. Khi hệ thống gặp vấn đề
-
-| Khi nào lỗi xảy ra? | Hệ thống làm gì? | Người dùng thấy gì? |
-|---|---|---|
-| Nguồn chính thức không có dữ liệu | | |
-| Nguồn bị lỗi hoặc quá chậm | | |
-| Câu hỏi vượt phạm vi AI | | |
-| Lỗi này lặp lại nhiều lần | | |
-
----
-
-## 4. Kiểm tra nhanh
-
-- [ ] Sơ đồ không chỉ là “AI trả lời tốt hơn”, mà có bước kiểm tra cụ thể.
-- [ ] Có cách xử lý khi thiếu dữ liệu.
-- [ ] Có cách chuyển sang người thật.
-- [ ] Có cách theo dõi để lần sau sửa tốt hơn.
+### Giải thích:
+- **Consensus Module**: Là bộ não của kiến trúc, thực hiện so sánh từng trường dữ liệu.
+- **Dữ liệu an toàn**: Chỉ khi cả 2 nguồn cùng đồng thuận thì dữ liệu mới được coi là "sạch" để đi tiếp.

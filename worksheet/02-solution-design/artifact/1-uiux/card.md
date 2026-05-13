@@ -1,82 +1,22 @@
----
-artifact: 1 — Lớp giao diện
-bai-tap: 2 — Thiết kế giải pháp
-demo: ./demo.md
----
+# Card: Giao diện cảnh báo rủi ro dữ liệu (UI/UX)
 
-# card.md — Lớp giao diện
-
-**Tình huống xử lý**: T-__  
-Xem `../../1-map-and-format.md` Phần A.
+## 1. Thông tin chung
+- **Lớp giải pháp**: Giao diện (UI/UX)
+- **Rủi ro giải quyết**: T-02 — OCR đọc sai số liệu do ảnh mờ/nhiễu.
+- **Hành động phòng vệ**: Thông báo + Phát hiện.
 
 ---
 
-## 1. Giải pháp là gì?
+## 2. Thiết kế giải pháp
+### Cách vận hành
+Khi AI trích xuất dữ liệu từ chứng từ, các ô có độ tự tin (confidence score) thấp dưới 85% sẽ được bôi đỏ hoặc vàng. Một tooltip sẽ hiện ra yêu cầu người dùng đối chiếu lại với bản gốc. Nút "Tiếp tục" sẽ bị vô hiệu hóa cho đến khi người dùng xác nhận hoặc sửa lại các ô này.
 
-[Viết 2-3 câu. Nói rõ màn hình sẽ thay đổi gì để giảm rủi ro.]
-
-Ví dụ:
-
-> Khi AI trả lời về hạn nộp học bổng, giao diện hiện nhãn “Đã kiểm tra từ nguồn chính thức” hoặc “Chưa có nguồn xác minh”. Nếu thiếu nguồn, màn hình hiện nút chuyển cho tư vấn viên.
-
----
-
-## 2. Vì sao sửa ở lớp giao diện?
-
-[Chọn 1-2 ý đúng với giải pháp của nhóm.]
-
-- Người dùng dễ tin câu trả lời của AI quá mức.
-- Rủi ro xảy ra ở khoảnh khắc người dùng đọc câu trả lời.
-- Giao diện cần làm rõ: thông tin nào đã kiểm tra, thông tin nào chưa chắc.
-- Nếu prompt hoặc dữ liệu vẫn sót lỗi, giao diện là lớp chặn cuối.
-
-**Hành động phòng vệ chính**:
-
-- [ ] Thông báo rõ giới hạn
-- [ ] Phát hiện dấu hiệu thiếu nguồn
-- [ ] Chuyển người thật khi cần
-- [ ] Giúp người dùng kiểm tra lại nguồn
+### Tại sao giải pháp này hiệu quả?
+Giải pháp này buộc người dùng phải "Human-in-the-loop", không cho phép họ tin tưởng mù quáng vào AI. Nó chuyển trách nhiệm xác thực sang người dùng một cách minh bạch.
 
 ---
 
-## 3. Demo nằm ở đâu?
-
-**File demo**: [`demo.md`](./demo.md)
-
-**Định dạng demo**:
-
-- [ ] Phác thảo màn hình
-- [ ] Luồng màn hình
-- [ ] Bản HTML đơn giản
-- [ ] Ảnh hoặc link prototype
-
-**Thành phần cần có trong demo**:
-
-- Trạng thái có nguồn xác minh
-- Trạng thái chưa có nguồn xác minh
-- Cách người dùng chuyển sang người thật
-- Câu chữ cảnh báo ngắn, dễ hiểu
-
----
-
-## 4. Tác dụng phụ
-
-**Có thể gây vấn đề gì?**
-
-[Ví dụ: màn hình rối hơn, người dùng thấy bị làm phiền, thao tác chậm hơn.]
-
-**Nhóm giảm vấn đề đó bằng cách nào?**
-
-[Ví dụ: chỉ hiện cảnh báo khi câu trả lời có rủi ro cao; dùng nhãn ngắn; đưa chi tiết vào nút mở rộng.]
-
----
-
-## 5. Checklist trước khi nộp
-
-- [ ] Giải pháp gắn đúng với một rủi ro chính.
-- [ ] Demo nhìn vào là hiểu vấn đề được chặn ở đâu.
-- [ ] Có đủ trạng thái bình thường và trạng thái lỗi.
-- [ ] Có cách chuyển sang người thật khi AI không nên tự xử lý.
-- [ ] Câu chữ trong giao diện ngắn, không đổ hết trách nhiệm cho người dùng.
-
-**Người phụ trách**: [Tên thành viên]
+## 3. Demo
+- **Định dạng**: ASCII UI Sketch
+- **Mô tả**: Bản phác thảo màn hình trích xuất dữ liệu với các cảnh báo lỗi.
+- **Link**: [demo.md](./demo.md)

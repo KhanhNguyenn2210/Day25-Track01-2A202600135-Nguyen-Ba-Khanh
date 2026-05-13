@@ -1,76 +1,25 @@
----
-artifact: 3 — Lớp kiến trúc dữ liệu
-bai-tap: 2 — Thiết kế giải pháp
-demo: ./demo.md
----
+# Card: Kiến trúc kiểm tra chéo đa tầng (Architecture)
 
-# card.md — Lớp kiến trúc dữ liệu
-
-**Tình huống xử lý**: T-__  
-Xem `../../1-map-and-format.md` Phần A.
+## 1. Thông tin chung
+- **Lớp giải pháp**: Kiến trúc dữ liệu (Architecture)
+- **Rủi ro giải quyết**: T-02 — OCR đọc sai số liệu.
+- **Hành động phòng vệ**: Ngăn + Khắc phục.
 
 ---
 
-## 1. Giải pháp là gì?
+## 2. Thiết kế giải pháp
+### Cách vận hành
+Sử dụng kiến trúc "Double OCR Pipeline":
+1. **Pipeline A**: Sử dụng Gemini 1.5 Pro (Multimodal) để trích xuất ngữ cảnh và con số.
+2. **Pipeline B**: Sử dụng một engine OCR chuyên biệt cho con số (như AWS Textract hoặc Google Document AI).
+3. **Mô-đun đối chiếu (Consensus Module)**: Một service nhỏ so sánh kết quả từ 2 Pipeline. Nếu kết quả lệch nhau vượt quá ngưỡng cho phép, hệ thống sẽ trigger trạng thái "Cần kiểm tra lại" và gửi thông báo cho người dùng hoặc admin.
 
-[Viết 2-3 câu. Nói rõ hệ thống cần thêm nguồn dữ liệu, bước kiểm tra, cách chuyển câu hỏi hoặc cách ghi lại lỗi nào.]
-
-Ví dụ:
-
-> Với câu hỏi về học bổng, hệ thống phải tra nguồn tuyển sinh chính thức trước khi AI trả lời. Nếu nguồn không có dữ liệu hoặc bị lỗi, AI không được đoán mà chuyển câu hỏi cho tư vấn viên.
-
----
-
-## 2. Vì sao sửa ở lớp kiến trúc dữ liệu?
-
-[Chọn 1-2 ý đúng với giải pháp của nhóm.]
-
-- Nguyên nhân chính là thiếu nguồn đúng hoặc nguồn cũ.
-- AI đang phải tự nhớ thông tin thay vì đọc từ nguồn đáng tin cậy.
-- Cần kiểm tra dữ liệu trước khi câu trả lời được tạo ra.
-- Cần ghi lại lỗi để nhóm biết lỗi nào lặp lại nhiều.
-
-**Hành động phòng vệ chính**:
-
-- [ ] Ngăn lỗi bằng nguồn dữ liệu đúng
-- [ ] Phát hiện khi nguồn thiếu hoặc lỗi
-- [ ] Khắc phục bằng cách chuyển sang người thật
-- [ ] Ghi lại lỗi để cải thiện sau
+### Tại sao giải pháp này hiệu quả?
+Giảm thiểu "Single point of failure". Việc hai mô hình khác kiến trúc cùng sai ở một vị trí là rất thấp.
 
 ---
 
-## 3. Demo nằm ở đâu?
-
-**File demo**: [`demo.md`](./demo.md)
-
-Demo cần có:
-
-- Sơ đồ cách dữ liệu đi qua hệ thống
-- Nguồn dữ liệu chính thức
-- Bước kiểm tra trước khi AI trả lời
-- Cách xử lý khi nguồn thiếu, lỗi hoặc quá cũ
-- Cách ghi lại hoặc theo dõi lỗi
-
----
-
-## 4. Tác dụng phụ
-
-**Có thể gây vấn đề gì?**
-
-[Ví dụ: trả lời chậm hơn, phụ thuộc vào nguồn dữ liệu, tốn công duy trì, hệ thống phức tạp hơn.]
-
-**Nhóm giảm vấn đề đó bằng cách nào?**
-
-[Ví dụ: lưu tạm dữ liệu phổ biến, có thông báo khi nguồn lỗi, đặt người phụ trách cập nhật nguồn, giới hạn chỉ áp dụng với câu hỏi rủi ro cao.]
-
----
-
-## 5. Checklist trước khi nộp
-
-- [ ] Sơ đồ cho thấy dữ liệu đi từ đâu đến đâu.
-- [ ] Có bước kiểm tra nguồn trước khi AI trả lời.
-- [ ] Có cách xử lý khi không có dữ liệu.
-- [ ] Có cách chuyển sang người thật với tình huống rủi ro cao.
-- [ ] Có cách biết lỗi này có đang lặp lại không.
-
-**Người phụ trách**: [Tên thành viên]
+## 3. Demo
+- **Định dạng**: Mermaid Diagram
+- **Mô tả**: Sơ đồ luồng dữ liệu kiểm tra chéo.
+- **Link**: [demo.md](./demo.md)

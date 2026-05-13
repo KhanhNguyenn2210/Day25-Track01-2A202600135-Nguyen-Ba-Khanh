@@ -1,24 +1,18 @@
 ---
-title: 00 — Bối cảnh sản phẩm của nhóm
+title: 00 — Bối cảnh sản phẩm cá nhân
 section: Day 25 — dùng lại cho mọi cuộc trò chuyện với AI
-format: Nhóm
+format: Cá nhân
 time: Điền 5 phút đầu buổi
 ---
 
-# 00-context.md — Bối cảnh sản phẩm của nhóm
-
-Điền file này một lần ở đầu buổi. Sau đó, mỗi lần dùng AI, hãy đưa toàn bộ nội dung file này vào đầu cuộc trò chuyện.
-
-Lý do: AI không tự nhớ bối cảnh giữa các cuộc trò chuyện. Nếu mỗi lần đưa bối cảnh khác nhau, câu trả lời cũng sẽ lệch.
-
----
+# 00-context.md — Bối cảnh sản phẩm cá nhân
 
 ## 1. Sản phẩm
 
-- **Tên sản phẩm / bot**: [...]
-- **Sản phẩm giúp ai làm gì**: [...]
-- **Người dùng gặp sản phẩm ở đâu**: [website / ứng dụng / chatbot / kiosk / nội bộ công ty]
-- **Giai đoạn hiện tại**: [chuẩn bị ra mắt / đang thử nghiệm / đã chạy thật]
+- **Tên sản phẩm / bot**: Trợ lý AI Quyết toán thuế TNCN
+- **Sản phẩm giúp ai làm gì**: Giúp người làm công ăn lương và freelancer tự quyết toán thuế TNCN bằng cách trích xuất dữ liệu từ chứng từ (OCR), giải thích luật thuế và tối ưu số thuế phải nộp/hoàn.
+- **Người dùng gặp sản phẩm ở đâu**: Ứng dụng web/mobile.
+- **Giai đoạn hiện tại**: Đang thử nghiệm (MVP).
 
 ---
 
@@ -26,55 +20,40 @@ Lý do: AI không tự nhớ bối cảnh giữa các cuộc trò chuyện. Nế
 
 **AI được làm gì**
 
-- [...]
-- [...]
-- [...]
+- Trích xuất thông tin từ ảnh chụp chứng từ thuế, CCCD.
+- Tóm tắt và giải thích các điều khoản luật thuế dựa trên nguồn dữ liệu đã kiểm duyệt (RAG).
+- Gợi ý cách phân bổ người phụ thuộc để tối ưu số thuế.
 
 **AI không được làm gì**
 
-- [...]
-- [...]
-- [...]
+- Không tự động nộp tờ khai lên hệ thống Tổng cục Thuế.
+- Không đưa ra lời khuyên pháp lý (legal advice) mang tính cam kết.
+- Không truy cập trực tiếp vào tài khoản ngân hàng của người dùng.
 
 **Vì sao có giới hạn này**
 
-[Ví dụ: rủi ro pháp lý, an toàn người dùng, quy định ngành, dữ liệu chưa đủ tin cậy.]
+- Rủi ro pháp lý cao nếu AI tư vấn sai hoặc thao tác sai trên hệ thống thuế quốc gia. Bảo mật dữ liệu tài chính là ưu tiên hàng đầu.
 
 ---
 
 ## 3. Người dùng
 
-- **Là ai**: [tuổi, vai trò, trình độ công nghệ, bối cảnh sử dụng]
-- **Họ hỏi AI khi nào**: [...]
-- **Họ cần quyết định gì sau khi hỏi AI**: [...]
-- **Khi nào họ dễ bị tổn thương / dễ hiểu sai**: [...]
-- **Họ thường tin AI đến mức nào**: [tin ngay / có kiểm tra lại / cần người thật xác nhận]
+- **Là ai**: Người đi làm (25-40 tuổi), freelancer, có nhiều nguồn thu nhập, rành công nghệ nhưng không chuyên về kế toán/thuế.
+- **Họ hỏi AI khi nào**: Khi bắt đầu mùa quyết toán thuế (tháng 3-4), khi nhận được chứng từ khấu trừ thuế mà không biết điền vào đâu.
+- **Họ cần quyết định gì sau khi hỏi AI**: Có tin vào con số AI tính toán để xuất file XML nộp thuế hay không.
+- **Khi nào họ dễ bị tổn thương / dễ hiểu sai**: Khi AI dùng thuật ngữ chuyên môn quá phức tạp hoặc khi AI khẳng định chắc chắn một con số mà không có căn cứ rõ ràng.
+- **Họ thường tin AI đến mức nào**: Cần người thật hoặc hệ thống kiểm chứng lại vì liên quan đến tiền bạc và pháp lý.
 
 ---
 
 ## 4. Bối cảnh ngành
 
-- **Sự cố tương tự đã từng xảy ra**: [...]
-- **Quy định hoặc ràng buộc liên quan**: [...]
-- **Nguồn chính thức nên ưu tiên**: [...]
+- **Sự cố tương tự đã từng xảy ra**: Chatbot tư vấn luật đưa ra thông tin cũ hoặc bịa đặt (hallucination) dẫn đến người dùng bị phạt chậm nộp.
+- **Quy định hoặc ràng buộc liên quan**: Luật quản lý Thuế, các nghị định về thuế TNCN, quy định về bảo vệ dữ liệu cá nhân (ND71).
+- **Nguồn chính thức nên ưu tiên**: Thư viện pháp luật, Cổng thông tin Tổng cục Thuế.
 
 ---
 
 ## 5. Ghi chú thêm
 
-[Điền bất kỳ thông tin nào giúp AI hiểu bối cảnh: hạn chót, quy mô nhóm, nguồn dữ liệu, chính sách nội bộ, ví dụ câu hỏi thật.]
-
----
-
-## Cách dùng
-
-```text
-1. Mở công cụ AI phù hợp với bước đang làm.
-2. Đưa toàn bộ nội dung file này vào đầu cuộc trò chuyện.
-3. Chọn prompt tham khảo từ thư mục ../prompts/ và chỉnh lại nếu cần.
-4. Đọc lại bản nháp AI tạo ra.
-5. Sửa lại cho đúng bối cảnh nhóm.
-6. Lưu kết quả vào đúng file trong worksheet/.
-```
-
-Ghi chú: nội dung trong `[...]` là chỗ cần điền. Sau khi điền xong, xóa dấu ngoặc nếu không cần giữ.
+- Hệ thống sử dụng Gemini 1.5 Pro cho khả năng OCR và suy luận luật. Cần tập trung vào việc minh bạch nguồn gốc dữ liệu (Citing sources).
